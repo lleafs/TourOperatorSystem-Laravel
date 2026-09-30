@@ -1,0 +1,7 @@
+id,name,iata,icao,city,state,county,country,city_code,latitude,longitude,elevation,time_zone,url,type,created_at,updated_at
+1,"Beirut-Rafic Hariri International Airport",BEY,OLBA,Baabda,Mont-Liban,,LB,BEY,33.8180749,35.490805228124003,42,Asia/Beirut,http://www.beirutairport.gov.lb/,AP,"2026-06-25 00:23:53","2026-06-25 00:23:53"
+2,"Arturo Merino Benitez Airport",SCL,SCEL,,,,CL,SCL,-33.397175,-70.79382,1610,America/Santiago,http://www.aeropuertosantiago.cl/ingles/index.php,AP,"2026-06-25 00:23:54","2026-06-25 00:23:54"
+3,"Istanbul New Airport",IST,LTFM,Bahcelievler,Istanbul,,TR,IST,40.9912282,28.8298952,82,Europe/Istanbul,http://www.igairport.com/en,AP,"2026-06-25 04:24:51","2026-06-25 04:24:51"
+4,"Adolfo Suarez Madrid-Barajas Airport",MAD,LEMD,"Barajas de Madrid",Madrid,"Provincia de Madrid",ES,MAD,40.4948384,-3.5740806206811002,1955,Europe/Madrid,http://www.aena.es/en/passengers/passengers.html,AP,"2026-06-25 04:24:52","2026-06-25 04:24:52"
+5,"Charles de Gaulle Airport",CDG,LFPG,,,,FR,PAR,49.0068908,2.5710819691019,337,Europe/Paris,http://www.aeroportsdeparis.fr/,AP,"2026-06-25 04:24:54","2026-06-25 04:24:54"
+6,Kleyate,KYE,OLKA,Halba,Aakkar,,LB,KYE,34.58611,36.002777,75,Asia/Beirut,,AP,"2026-06-26 04:20:47","2026-06-26 04:20:47"

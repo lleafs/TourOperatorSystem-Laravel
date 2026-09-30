@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Continent;
+use App\Models\Country;
+use App\Models\City;
 use App\Models\Agency;
 use App\Models\Voucher;
+use App\Models\Hotel;
+use App\Models\Flight;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -23,9 +28,14 @@ class BookingController extends Controller
      */
     public function create()
     {
-        $agencies = Agency::all();
-        $vouchers = Voucher::all();
-        return view('bookings.create', compact('agencies', 'vouchers'));
+        $continents = Continent::all();
+        $countries  = Country::all();
+        $cities     = City::all();
+        $agencies   = Agency::all();
+        $vouchers   = Voucher::all();
+        $hotels     = Hotel::all();
+        $flights    = Flight::all();
+        return view('bookings.create', compact('continents', 'countries', 'cities', 'agencies', 'vouchers', 'hotels', 'flights'));
     }
 
     /**
