@@ -23,9 +23,7 @@ return new class extends Migration
             $table->text('notes')->nullable();       // Optional notes
 
             // New foreign key to agencies
-            $table->foreignId('agency_id')
-                ->constrained('agencies')
-                ->onDelete('cascade');
+            $table->foreignId('agency_id')->constrained('agencies');
 
             $table->timestamps();
         });

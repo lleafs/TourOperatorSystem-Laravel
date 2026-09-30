@@ -39,7 +39,7 @@
         </div>
         <div class="mb-3">
             <label for="amount" class="form-label">Amount</label>
-            <input type="text" id="amount" name="amount" class="form-control" required>
+            <input type="number" id="amount" name="amount" class="form-control" step="1" required>
         </div>
         <div class="mb-3">
             <label for="expiry_date" class="form-label">Expiry Date</label>

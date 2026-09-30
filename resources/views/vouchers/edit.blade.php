@@ -48,7 +48,7 @@
         <div class="mb-3">
             <label for="amount" class="form-label">Amount</label>
             <input type="text" id="amount" name="amount" class="form-control"
-                value="{{ number_format($voucher->amount, 0, ',', '.') }}" required>
+                value="{{ $voucher->amount }}" required>
         </div>
 
         <div class="mb-3">
