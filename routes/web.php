@@ -41,6 +41,8 @@ Route::resource('countries', CountryController::class);
 
 // Resourceful CRUD for cities
 Route::resource('cities', CityController::class);
+Route::get('/cities/by-country/{id}', [CityController::class, 'getByCountry']);
+
 
 // Temporary logout placeholder (since we skipped auth)
 Route::get('/logout', function () {

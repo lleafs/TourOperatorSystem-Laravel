@@ -29,11 +29,16 @@ class CountryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255|unique:countries,name',
+            'continent_id' => 'nullable|exists:continents,id',
         ]);
 
-        Country::create($request->only('name'));
+        $country = Country::create($validated);
+
+        if ($request->ajax()) {
+            return response()->json($country);
+        }
 
         return redirect()->route('countries.index')
             ->with('success', 'Country created successfully.');

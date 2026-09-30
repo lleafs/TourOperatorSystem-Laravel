@@ -31,15 +31,32 @@ class CityController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name'       => 'required|string|max:255',
             'country_id' => 'required|exists:countries,id',
         ]);
 
-        City::create($request->only('name', 'country_id'));
+        $city = City::create($validated);
 
+        // If AJAX, return JSON
+        if ($request->ajax()) {
+            return response()->json($city);
+        }
+
+        // Fallback for normal form submission
         return redirect()->route('cities.index')
             ->with('success', 'City created successfully.');
+    }
+
+
+    /**
+     * For city dropdown in create form.
+     */
+    public function getByCountry($id)
+    {
+        $cities = City::where('country_id', $id)->get(['id', 'name']);
+        //dd($cities);
+        return response()->json($cities);
     }
 
     /**
