@@ -38,16 +38,15 @@ class CityController extends Controller
 
         $city = City::create($validated);
 
-        // If AJAX, return JSON
-        if ($request->ajax()) {
+        // 👇 Return JSON if the request expects it
+        if ($request->expectsJson()) {
             return response()->json($city);
         }
 
-        // Fallback for normal form submission
+        // Fallback for normal form submissions
         return redirect()->route('cities.index')
             ->with('success', 'City created successfully.');
     }
-
 
     /**
      * For city dropdown in create form.

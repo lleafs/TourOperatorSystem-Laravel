@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('name_normalized');
             $table->foreignId('country_id')->constrained()->onDelete('cascade');
             $table->timestamps();
+
+            // Composite unique index: same city name can't repeat in the same country
+            $table->unique(['name_normalized', 'country_id']);
         });
     }
 

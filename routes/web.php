@@ -38,6 +38,7 @@ Route::resource('continents', ContinentController::class);
 
 // Resourceful CRUD for countries
 Route::resource('countries', CountryController::class);
+Route::get('/countries/list', [CountryController::class, 'list']);
 
 // Resourceful CRUD for cities
 Route::resource('cities', CityController::class);

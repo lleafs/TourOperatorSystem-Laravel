@@ -10,7 +10,7 @@
         {{-- Booking Info --}}
         <div class="mb-3">
             <label for="agency_id">Agency</label>
-            <select name="agency_id" class="form-control" required>
+            <select name="agency_id" id="agency_id" class="form-control" required>
                 @foreach($agencies as $agency)
                     <option value="{{ $agency->id }}">{{ $agency->name }}</option>
                 @endforeach
@@ -20,11 +20,11 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="booking_date">Booking Date</label>
-                <input type="date" name="booking_date" class="form-control" required>
+                <input type="date" id="booking_date" name="booking_date" class="form-control" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="status">Status</label>
-                <select name="status" class="form-control">
+                <select name="status"  id="status" class="form-control">
                     <option value="pending">Pending</option>
                     <option value="confirmed">Confirmed</option>
                     <option value="cancelled">Cancelled</option>
@@ -36,11 +36,11 @@
         <div class="row">
             <div class="col-md-6 mb-3">
                 <label for="customer_name">Customer Name</label>
-                <input type="text" name="customer_name" class="form-control" required>
+                <input type="text" id="customer_name" name="customer_name"  class="form-control" required>
             </div>
             <div class="col-md-6 mb-3">
                 <label for="customer_email">Customer Email</label>
-                <input type="email" name="customer_email" class="form-control" required>
+                <input type="email" id="customer_email" name="customer_email" class="form-control" required>
             </div>
         </div>
 
@@ -80,7 +80,7 @@
 
                 <div class="mb-3">
                     <label for="flight_id">Select Flight</label>
-                    <select name="flight_id" class="form-control">
+                    <select name="flight_id" id="flight_id" class="form-control">
                         <option value="">None</option>
                         @foreach($flights as $flight)
                             <option value="{{ $flight->id }}">{{ $flight->route }}</option>
@@ -90,7 +90,7 @@
 
                 <div class="mb-3">
                     <label for="travel_date">Travel Date</label>
-                    <input type="date" name="travel_date" class="form-control">
+                    <input type="date" name="travel_date"  id="travel_date" class="form-control">
                 </div>
             </div>
 
@@ -98,7 +98,7 @@
                 <h4>Hotel</h4>
                 <div class="mb-3">
                     <label for="hotel_id">Select Hotel</label>
-                    <select name="hotel_id" class="form-control">
+                    <select name="hotel_id"  id="hotel_id" class="form-control">
                         <option value="">None</option>
                         @foreach($hotels as $hotel)
                             <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
@@ -107,7 +107,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="total_amount">Total Amount</label>
-                    <input type="number" step="0.01" name="total_amount" class="form-control">
+                    <input type="number" step="0.01" name="total_amount" id="total_amount" class="form-control">
                 </div>
             </div>
         </div>
