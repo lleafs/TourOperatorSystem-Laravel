@@ -2,44 +2,64 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   // Country form
-// Country form
-const countryForm = document.getElementById("addCountryForm");
-if (countryForm) {
-  countryForm.addEventListener("submit", function (e) {
-    e.preventDefault();
+  const countryForm = document.getElementById("addCountryForm");
+  if (countryForm) {
+    countryForm.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    fetch(this.action, {
-      method: "POST",
-      body: new FormData(this),
-      headers: {
-        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
-        Accept: "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        const bookingSelect = document.getElementById("departure_country_id");
-        const cityModalSelect = document.getElementById("city_country_id");
+      fetch(this.action, {
+        method: "POST",
+        body: new FormData(this),
+        headers: {
+          "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+            .content,
+          Accept: "application/json",
+        },
+      })
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((err) => Promise.reject(err));
+          }
+          return res.json();
+        })
+        .then((data) => {
+          // ✅ normal success flow
+          const bookingSelect = document.getElementById("departure_country_id");
+          const cityModalSelect = document.getElementById("city_country_id");
 
-        [bookingSelect, cityModalSelect].forEach((sel) => {
-          if (sel) {
-            const opt = document.createElement("option");
-            opt.value = data.id;
-            opt.text = data.name;
-            opt.selected = true;
-            sel.appendChild(opt);
+          [bookingSelect, cityModalSelect].forEach((sel) => {
+            if (sel) {
+              const opt = document.createElement("option");
+              opt.value = data.id;
+              opt.text = data.name;
+              opt.selected = true;
+              sel.appendChild(opt);
+            }
+          });
+
+          bootstrap.Modal.getInstance(
+            document.getElementById("addCountryModal"),
+          ).hide();
+          this.reset();
+        })
+        .catch((err) => {
+          console.error(err);
+
+          const toastEl = document.getElementById("errorToast");
+          if (toastEl) {
+            // set the toast body text
+            toastEl.querySelector(".toast-body").textContent =
+              err.error || "Error saving country";
+
+            // show the toast
+            new bootstrap.Toast(toastEl).show();
+          } else {
+            // fallback if toast element not found
+            alert(err.error || "Error saving country");
           }
         });
-
-        bootstrap.Modal.getInstance(
-          document.getElementById("addCountryModal")
-        ).hide();
-        this.reset();
-      })
-      .catch((err) => console.error(err));
-  });
-}
-
+    });
+  }
 
   // City form
   const cityForm = document.getElementById("addCityForm");
@@ -56,7 +76,12 @@ if (countryForm) {
           Accept: "application/json",
         },
       })
-        .then((res) => res.json())
+        .then((res) => {
+          if (!res.ok) {
+            return res.json().then((err) => Promise.reject(err));
+          }
+          return res.json();
+        })
         .then((data) => {
           const countryId = document.getElementById(
             "departure_country_id",
@@ -90,7 +115,19 @@ if (countryForm) {
           ).hide();
           this.reset();
         })
-        .catch((err) => console.error("Error saving city:", err));
+        .catch((err) => {
+          console.error(err);
+
+          const toastEl = document.getElementById("errorToastCity");
+          if (toastEl) {
+            toastEl.querySelector(".toast-body").textContent =
+              err.error || "Error saving city";
+            new bootstrap.Toast(toastEl).show();
+          } else {
+            // fallback if toast element not found
+            alert(err.error || "Error saving city");
+          }
+        });
     });
   }
 

@@ -31,17 +31,20 @@ class CountryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
+            'continent_id' => 'sometimes|exists:continents,id',
         ]);
 
-        $country = Country::create($validated);
-
-        if ($request->expectsJson()) {
+        try {
+            $country = Country::create($validated);
             return response()->json($country);
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() == 23000) { // duplicate key
+                return response()->json(['error' => 'Country already exists'], 422);
+            }
+            throw $e;
         }
-
-        return redirect()->route('countries.index')
-            ->with('success', 'Country created successfully.');
     }
+
     public function list()
     {
         return Country::all();
