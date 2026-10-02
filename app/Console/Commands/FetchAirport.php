@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
+
 use App\Models\Airport;
+use App\Models\City;
 
 class FetchAirport extends Command
 {
@@ -51,6 +53,17 @@ class FetchAirport extends Command
             $this->error("No IATA/code key found in response: " . json_encode($meta));
             return;
         }
+
+        $cityName = $meta['city'] ?? null;
+        $cityId = null;
+        if ($cityName) {
+            $city = City::firstOrCreate(
+                ['name' => $cityName],
+                ['country' => $meta['country'] ?? null]
+            );
+            $cityId = $city->id;
+        }
+
         $file = database_path("seeders/csv/airports.csv");
         // Ensure directory exists
         if (!is_dir(dirname($file))) {

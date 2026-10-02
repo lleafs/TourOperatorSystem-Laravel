@@ -23,4 +23,19 @@ class EmisivoBooking extends Model
         'notes',
         'total_amount',
     ];
+
+    public function departureCountry()
+    {
+        return $this->belongsTo(Country::class, 'departure_country_id');
+    }
+
+    public function departureCity()
+    {
+        return $this->belongsTo(City::class, 'departure_city_id');
+    }
+
+    public function airport()
+    {
+        return $this->belongsTo(Airport::class, 'airport_id');
+    }
 }

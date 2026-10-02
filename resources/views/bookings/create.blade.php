@@ -43,6 +43,10 @@
                 <label for="customer_email">Customer Email</label>
                 <input type="email" id="customer_email" name="customer_email" class="form-control" required>
             </div>
+            <div class="col-md-6 mb-3">
+                <label for="travel_date">Travel Date</label>
+                <input type="date" id="travel_date" name="travel_date" class="form-control">
+            </div>
         </div>
 
         {{-- Flight & Hotel --}}
@@ -73,11 +77,17 @@
                     <div class="input-group">
                         <select id="departure_city_id" name="departure_city_id" class="form-control">
                             <option value="">Select City</option>
+                            @foreach($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                            @endforeach
                         </select>
                         <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addCityModal">
                             Add
                         </button>
                     </div>
+                    @error('departure_city_id')
+                    <div class="text-danger">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 {{-- Airport --}}
@@ -92,7 +102,7 @@
             {{-- Hotel Column --}}
             <div class="col-md-6 mb-3">
                 <h4>Hotel</h4>
-                
+
                 {{-- Hotel Timing --}}
                 <div class="mb-3">
                     <label for="hotel_timing" class="form-label">Hotel Timing</label>
@@ -103,27 +113,29 @@
                     </select>
                 </div>
 
-                {{-- Hotel Name --}}
-                <div class="mb-3">
-                    <label for="hotel_name" class="form-label">Hotel Name</label>
-                    <input type="text" name="hotel_name" class="form-control" required>
-                </div>
-
                 {{-- Hotel City --}}
                 <div class="mb-3">
                     <label for="hotel_city" class="form-label">Hotel City</label>
-                    <input type="text" name="hotel_city" class="form-control" value="{{ old('hotel_city') }}">
+                    <input type="text" id="hotel_city" name="hotel_city" class="form-control" value="{{ old('hotel_city') }}">
                 </div>
+
+                {{-- Hotel Name --}}
+                <div class="mb-3">
+                    <label for="hotel_name" class="form-label">Hotel Name</label>
+                    <input type="text" id="hotel_name" name="hotel_name" class="form-control" required>
+                </div>
+
+
 
                 {{-- Check‑In / Check‑Out --}}
                 <div class="mb-3">
                     <label for="check_in" class="form-label">Check‑In Date</label>
-                    <input type="date" name="check_in" class="form-control" required>
+                    <input type="date" id="check_in" name="check_in" class="form-control" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="check_out" class="form-label">Check‑Out Date</label>
-                    <input type="date" name="check_out" class="form-control" required>
+                    <input type="date" id="check_out" name="check_out" class="form-control" required>
                 </div>
             </div>
         </div>
@@ -132,7 +144,7 @@
         {{-- Notes --}}
         <div class="mb-3">
             <label for="notes" class="form-label">Notes</label>
-            <textarea name="notes" class="form-control" rows="3"></textarea>
+            <textarea name="notes" id="notes" class="form-control" rows="3"></textarea>
         </div>
 
         <div class="mb-3">
@@ -160,7 +172,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="country_name">Country Name</label>
-                        <input type="text" name="name" id="country_name" class="form-control" required>
+                        <input type="text" name="name" id="country_name" class="form-control" required autocomplete="country">
                     </div>
                     {{-- continent optional --}}
                     <div class="mb-3">
@@ -208,7 +220,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="city_name">City Name</label>
-                        <input type="text" name="name" id="city_name" class="form-control" required>
+                        <input type="text" name="name" id="city_name" class="form-control" required autocomplete="address-level2">
                     </div>
                     <div class="mb-3">
                         <label for="city_country_id">Country</label>
@@ -219,6 +231,13 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" name="create_airport" id="create_airport" class="form-check-input">
+                        <label class="form-check-label" for="create_airport">
+                            Also create an airport for this city
+                        </label>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save City</button>

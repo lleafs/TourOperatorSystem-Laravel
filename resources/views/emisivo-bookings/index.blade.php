@@ -33,9 +33,9 @@
                     <td>{{ $booking->booking_date }}</td>
                     <td>{{ $booking->status }}</td>
                     <td>{{ $booking->customer_name }}</td>
-                    <td>{{ $booking->departure_country_id }}</td>
-                    <td>{{ $booking->departure_city_id }}</td>
-                    <td>{{ $booking->airport_id }}</td>
+                    <td>{{ $booking->departureCountry->name }}</td>
+                    <td>{{ $booking->departureCity->name }}</td>
+                    <td>{{ $booking->airport->name }}</td>
                     <td>{{ $booking->total_amount }}</td>
                     <td>
                         <a href="{{ route('emisivo-bookings.show', $booking) }}" class="btn btn-info btn-sm">View</a>
@@ -53,6 +53,6 @@
         </tbody>
     </table>
 
-    {{ $bookings->links() }}
+    {{ $bookings->links('pagination::bootstrap-5') }}
 </div>
 @endsection

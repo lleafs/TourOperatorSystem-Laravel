@@ -117,8 +117,12 @@ class AirportController extends Controller
         return City::where('country_id', $countryId)->orderBy('name')->get();
     }
 
-    public function getAirportsByCity($cityName)
+    public function getAirportsByCity($cityId)
     {
-        return Airport::where('city', $cityName)->orderBy('name')->get(['id', 'name', 'iata']);
+        $cityName = City::where('id', $cityId)->value('name');
+
+        return Airport::where('city', $cityName)
+                        ->orderBy('name')
+                        ->get(['id', 'name', 'iata']);
     }
 }

@@ -12,7 +12,7 @@
             <label for="agency_id" class="form-label">Agency</label>
             <select name="agency_id" id="agency_id" class="form-control" required>
                 @foreach($agencies as $agency)
-                    <option value="{{ $agency->id }}">{{ $agency->name }}</option>
+                <option value="{{ $agency->id }}">{{ $agency->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -38,10 +38,16 @@
             <div class="col-md-6 mb-3">
                 <label for="customer_name" class="form-label">Customer Name</label>
                 <input type="text" name="customer_name" id="customer_name" class="form-control" required>
+                @error('customer_name')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="col-md-6 mb-3">
                 <label for="customer_email" class="form-label">Customer Email</label>
                 <input type="email" name="customer_email" id="customer_email" class="form-control" required>
+                @error('customer_email')
+                <div class="text-danger">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 
@@ -52,9 +58,12 @@
             <select name="departure_country_id" id="departure_country_id" class="form-control">
                 <option value="">Select Country</option>
                 @foreach($countries as $country)
-                    <option value="{{ $country->id }}">{{ $country->name }}</option>
+                <option value="{{ $country->id }}">{{ $country->name }}</option>
                 @endforeach
             </select>
+            @error('departure_country_id')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -62,9 +71,13 @@
             <select name="departure_city_id" id="departure_city_id" class="form-control">
                 <option value="">Select City</option>
                 @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                <option value="{{ $city->id }}">{{ $city->name }}</option>
                 @endforeach
             </select>
+            {{-- Validation error --}}
+            @error('departure_city_id')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="mb-3">
@@ -72,9 +85,12 @@
             <select name="airport_id" id="airport_id" class="form-control">
                 <option value="">Select Airport</option>
                 @foreach($airports as $airport)
-                    <option value="{{ $airport->id }}">{{ $airport->name }}</option>
+                <option value="{{ $airport->id }}">{{ $airport->name }}</option>
                 @endforeach
             </select>
+            @error('airport_id')
+            <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         {{-- Notes --}}

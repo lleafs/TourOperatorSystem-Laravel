@@ -13,6 +13,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('bookings.index') }}">
+                            Bookings
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('agencies.index') }}">
                             Travel Agencies
                         </a>
@@ -28,8 +33,23 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('airports.index') }}">
+                            Airports
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('airlines.index') }}">
+                            Airlines
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('flights.index') }}">
                             Flights
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('continents.index') }}">
+                            Continents
                         </a>
                     </li>
                 </ul>
@@ -41,23 +61,23 @@
             <h1 class="mt-4">Dashboard</h1>
             <p>Welcome to the Tour Operator System dashboard. Use the side menu to navigate.</p>
 
-{{-- Example panel linking to Bookings --}}
-<div class="card mt-4">
-    <div class="card-header">Quick Access</div>
-    <div class="card-body">
-        <a href="{{ route('bookings.index') }}" class="btn btn-success">View Bookings</a>
+            {{-- Example panel linking to Bookings --}}
+            <div class="card mt-4">
+                <div class="card-header">Quick Access</div>
+                <div class="card-body">
+                    <a href="{{ route('bookings.index') }}" class="btn btn-success">View Bookings</a>
 
-        {{-- New Booking Options --}}
-        <div class="btn-group" role="group">
-            <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
-                New Emisivo Booking
-            </a>
-            <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-info">
-                New Receptivo Booking
-            </a>
-        </div>
-    </div>
-</div>
+                    {{-- New Booking Options --}}
+                    <div class="btn-group" role="group">
+                        <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
+                            New Emisivo Booking
+                        </a>
+                        <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-info">
+                            New Receptivo Booking
+                        </a>
+                    </div>
+                </div>
+            </div>
 
         </main>
     </div>

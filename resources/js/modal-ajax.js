@@ -66,11 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 citySelect.innerHTML = '<option value="">Select City</option>';
                 cities.forEach((city) => {
                   const opt = document.createElement("option");
-                  opt.value = city.name;   // use city name as value
+                  opt.value = city.id;   // use city name as value
                   opt.text = city.name;
                   citySelect.appendChild(opt);
                 });
-                citySelect.value = data.name; // auto-select new city by name
+                citySelect.value = data.id; // auto-select new city by name
               })
               .catch((err) => {
                 console.error("Error reloading cities:", err);
@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
           citySelect.innerHTML = '<option value="">Select City</option>';
           data.forEach((city) => {
             const opt = document.createElement("option");
-            opt.value = city.name;   // use name instead of id
+            opt.value = city.id;   // use name instead of id
             opt.text = city.name;
             citySelect.appendChild(opt);
           });
@@ -124,15 +124,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Load airports when city changes
     citySelect.addEventListener("change", function () {
-      const cityName = this.value;
+      const cityId = this.value;
       airportSelect.innerHTML = '<option value="">Loading...</option>';
 
-      if (!cityName) {
+      if (!cityId) {
         airportSelect.innerHTML = '<option value="">Select Airport</option>';
         return;
       }
 
-      fetch(`/airports/by-city/${encodeURIComponent(cityName)}`)
+      fetch(`/airports/by-city/${encodeURIComponent(cityId)}`)
         .then((res) => res.json())
         .then((data) => {
           airportSelect.innerHTML = '<option value="">Select Airport</option>';

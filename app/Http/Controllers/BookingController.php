@@ -10,6 +10,7 @@ use App\Models\Agency;
 use App\Models\Voucher;
 use App\Models\Hotel;
 use App\Models\Flight;
+use App\Models\Airport;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -33,9 +34,43 @@ class BookingController extends Controller
         $cities     = City::all();
         $agencies   = Agency::all();
         $vouchers   = Voucher::all();
+        $airports   = Airport::all();
         $hotels     = Hotel::all();
         $flights    = Flight::all();
-        return view('bookings.create', compact('continents', 'countries', 'cities', 'agencies', 'vouchers', 'hotels', 'flights'));
+        return view(
+            'bookings.create',
+            compact(
+                'continents',
+                'countries',
+                'cities',
+                'agencies',
+                'vouchers',
+                'airports',
+                'hotels',
+                'flights'
+            )
+        );
+
+        //Debugging
+        //$data = [
+        //    'continents' => Continent::all(),
+        //    'countries'  => Country::all(),
+        //    'cities'     => City::all(),
+        //    'agencies'   => Agency::all(),
+        //    'vouchers'   => Voucher::all(),
+        //    'hotels'     => Hotel::all(),
+        //    'flights'    => Flight::all(),
+        //];
+        //dd($data);
+        //return response()->json($data);
+    }
+    /**
+     * Gets City by id.
+     */
+    public function getByCity($id)
+    {
+        $airports = Airport::where('city_id', $id)->get(['id', 'name', 'iata']);
+        return response()->json($airports);
     }
 
     /**
@@ -44,15 +79,33 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'tour' => 'required|string|max:255',
-            'date' => 'required|date',
-            'customer' => 'required|string|max:255',
+            'agency_id'           => 'required|exists:agencies,id',
+            'booking_date'        => 'required|date',
+            'travel_date'         => 'nullable|date|after_or_equal:booking_date',
+            'status'              => 'required|in:pending,confirmed,cancelled',
+            'customer_name'       => 'required|string|max:255',
+            'customer_email'      => 'required|email|max:255',
+            'departure_country_id' => 'nullable|exists:countries,id',
+            'departure_city_id'   => 'nullable|exists:cities,id',
+            'airport_id'          => 'nullable|exists:airports,id',
+            'hotel_timing'        => 'required|string|in:pre_flight,arrival,other',
+            'hotel_name'          => 'required|string|max:255',
+            'hotel_city'          => 'nullable|string|max:255',
+            'check_in'            => 'required|date',
+            'check_out'           => 'required|date|after_or_equal:check_in',
+            'notes'               => 'nullable|string',
+            'total_amount'        => 'required|numeric|min:0',
+            'voucher_id'          => 'nullable|exists:vouchers,id',
+            'hotel_id'            => 'nullable|exists:hotels,id',
+            'flight_id'           => 'nullable|exists:flights,id',
         ]);
 
         Booking::create($validated);
 
-        return redirect()->route('bookings.index')
-            ->with('success', 'Booking created successfully.');
+        // Redirect back to bookings index with a success flash message
+        return redirect()
+            ->route('bookings.index')
+            ->with('success', 'Booking created successfully');
     }
 
     /**

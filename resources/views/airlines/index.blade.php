@@ -67,6 +67,7 @@
         </tbody>
     </table>
 
-    {{ $airlines->links() }}
+    {{ $airlines->links('pagination::bootstrap-5') }}
+
 </div>
 @endsection

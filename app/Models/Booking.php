@@ -10,25 +10,43 @@ class Booking extends Model
     /** @use HasFactory<\Database\Factories\BookingFactory> */
     use HasFactory;
     protected $fillable = [
-        'customer_name',
-        'customer_email',
+        'agency_id',
         'booking_date',
         'travel_date',
-        'total_amount',
         'status',
-        'agency_id',
+        'customer_name',
+        'customer_email',
+        'departure_country_id',
+        'departure_city_id',
+        'airport_id',
+        'hotel_timing',
+        'hotel_name',
+        'hotel_city',
+        'check_in',
+        'check_out',
+        'notes',
+        'total_amount',
         'voucher_id',
         'hotel_id',
         'flight_id',
-
     ];
+
+    // Relationships (optional, if you want Eloquent relations)
     public function agency()
     {
         return $this->belongsTo(Agency::class);
     }
-    public function voucher()
+    public function city()
     {
-        return $this->belongsTo(Voucher::class);
+        return $this->belongsTo(City::class, 'departure_city_id');
+    }
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'departure_country_id');
+    }
+    public function airport()
+    {
+        return $this->belongsTo(Airport::class);
     }
     public function hotel()
     {
@@ -37,5 +55,9 @@ class Booking extends Model
     public function flight()
     {
         return $this->belongsTo(Flight::class);
+    }
+    public function voucher()
+    {
+        return $this->belongsTo(Voucher::class);
     }
 }

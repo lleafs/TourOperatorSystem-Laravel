@@ -18,7 +18,9 @@ class EmisivoBookingController extends Controller
      */
     public function index()
     {
-        $bookings = EmisivoBooking::latest()->paginate(10);
+        $bookings = EmisivoBooking::with(['departureCountry', 'departureCity', 'airport'])
+        ->latest()
+        ->paginate(10);
         return view('emisivo-bookings.index', compact('bookings'));
     }
 
@@ -80,7 +82,12 @@ class EmisivoBookingController extends Controller
      */
     public function edit(EmisivoBooking $emisivoBooking)
     {
-        return view('emisivo-bookings.edit', compact('emisivoBooking'));
+
+        $agencies = Agency::all();
+        $countries = Country::all();
+        $cities = City::all();
+        $airports = Airport::all();
+        return view('emisivo-bookings.create', compact('emisivoBooking', 'agencies', 'countries', 'cities', 'airports'));
     }
 
     /**
