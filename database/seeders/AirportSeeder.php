@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -9,6 +10,9 @@ class AirportSeeder extends Seeder
 {
     public function run()
     {
+        // ✅ Remove all existing rows safely (respects foreign keys)
+        DB::table('airports')->delete();
+
         $path = database_path('seeders/csv/airports.csv');
         $file = fopen($path, 'r');
 
@@ -21,7 +25,7 @@ class AirportSeeder extends Seeder
             DB::table('airports')->insert([
                 'id'         => $data['id'],
                 'name'       => $data['name'],
-                'iata'       => $data['iata'],
+                'iata'       => $data['code'],
                 'icao'       => $data['icao'],
                 'city'       => $data['city'],
                 'state'      => $data['state'],
@@ -34,8 +38,8 @@ class AirportSeeder extends Seeder
                 'time_zone'  => $data['time_zone'],
                 'url'        => $data['url'],
                 'type'       => $data['type'],
-                'created_at' => $data['created_at'],
-                'updated_at' => $data['updated_at'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
         }
 

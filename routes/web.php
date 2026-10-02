@@ -9,6 +9,10 @@ use App\Http\Controllers\FlightController;
 use App\Http\Controllers\ContinentController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\CityController;
+use App\Http\Controllers\AirportController;
+use App\Http\Controllers\AirlineController;
+use App\Http\Controllers\EmisivoBookingController;
+use App\Http\Controllers\ReceptivoBookingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,6 +47,23 @@ Route::get('/countries/list', [CountryController::class, 'list']);
 // Resourceful CRUD for cities
 Route::resource('cities', CityController::class);
 Route::get('/cities/by-country/{id}', [CityController::class, 'getByCountry']);
+
+//Resourceful CRUD for airports
+Route::resource('airports', AirportController::class);
+Route::get('/airports/by-city/{cityName}', [AirportController::class, 'getAirportsByCity']);
+
+//Resourceful CRUD for airlines
+Route::resource('airlines', AirlineController::class);
+
+
+
+
+
+//Resourceful CRUD for Emisivo Booking
+Route::resource('emisivo-bookings', EmisivoBookingController::class);
+//Resourceful CRUD for Receptivo Booking
+Route::resource('receptivo-bookings', ReceptivoBookingController::class);
+
 
 
 // Temporary logout placeholder (since we skipped auth)

@@ -12,7 +12,7 @@ class AirlineAirportController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**

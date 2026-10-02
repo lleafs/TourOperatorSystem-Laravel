@@ -12,7 +12,8 @@ class AirlineController extends Controller
      */
     public function index()
     {
-        //
+        $airlines = Airline::paginate(10);
+        return view('airlines.index', compact('airlines'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AirlineController extends Controller
      */
     public function create()
     {
-        //
+        return view('airlines.create');
     }
 
     /**
@@ -28,7 +29,18 @@ class AirlineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'   => 'required|string',
+            'iata'   => 'nullable|string|size:2|unique:airlines',
+            'icao'   => 'nullable|string|size:3|unique:airlines',
+            'country' => 'nullable|string',
+            'url'    => 'nullable|url',
+        ]);
+
+        Airline::create($request->all());
+
+        return redirect()->route('airlines.index')
+            ->with('success', 'Airline created successfully.');
     }
 
     /**
@@ -36,7 +48,7 @@ class AirlineController extends Controller
      */
     public function show(Airline $airline)
     {
-        //
+        return view('airlines.show', compact('airline'));
     }
 
     /**
@@ -44,7 +56,7 @@ class AirlineController extends Controller
      */
     public function edit(Airline $airline)
     {
-        //
+        return view('airlines.edit', compact('airline'));
     }
 
     /**
@@ -52,7 +64,18 @@ class AirlineController extends Controller
      */
     public function update(Request $request, Airline $airline)
     {
-        //
+        $request->validate([
+            'name'   => 'required|string',
+            'iata'   => 'nullable|string|size:2|unique:airlines,iata,' . $airline->id,
+            'icao'   => 'nullable|string|size:3|unique:airlines,icao,' . $airline->id,
+            'country' => 'nullable|string',
+            'url'    => 'nullable|url',
+        ]);
+
+        $airline->update($request->all());
+
+        return redirect()->route('airlines.index')
+            ->with('success', 'Airline updated successfully.');
     }
 
     /**
@@ -60,6 +83,9 @@ class AirlineController extends Controller
      */
     public function destroy(Airline $airline)
     {
-        //
+        $airline->delete();
+
+        return redirect()->route('airlines.index')
+            ->with('success', 'Airline deleted successfully.');
     }
 }
