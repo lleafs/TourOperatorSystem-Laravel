@@ -9,6 +9,8 @@ class EmisivoBooking extends Model
 {
     use HasFactory;
 
+    protected $table = 'emisivo_bookings';
+
     protected $fillable = [
         'agency_id',
         'booking_date',

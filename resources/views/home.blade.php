@@ -49,10 +49,10 @@
 
         {{-- New Booking Options --}}
         <div class="btn-group" role="group">
-            <a href="{{ route('bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
+            <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
                 New Emisivo Booking
             </a>
-            <a href="{{ route('bookings.create', ['type' => 'receptivo']) }}" class="btn btn-info">
+            <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-info">
                 New Receptivo Booking
             </a>
         </div>

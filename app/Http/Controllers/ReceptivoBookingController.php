@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ReceptivoBooking;
+use App\Models\Agency;
+
 use Illuminate\Http\Request;
 
 class ReceptivoBookingController extends Controller
@@ -21,7 +23,8 @@ class ReceptivoBookingController extends Controller
      */
     public function create()
     {
-        return view('receptivo-bookings.create');
+        $agencies = Agency::all();
+        return view('receptivo-bookings.create', compact('agencies'));
     }
 
     /**
@@ -63,7 +66,8 @@ class ReceptivoBookingController extends Controller
      */
     public function edit(ReceptivoBooking $receptivoBooking)
     {
-        return view('receptivo-bookings.edit', compact('receptivoBooking'));
+        $agencies = Agency::all();
+        return view('receptivo-bookings.edit', compact('receptivoBooking', 'agencies'));
     }
 
     /**

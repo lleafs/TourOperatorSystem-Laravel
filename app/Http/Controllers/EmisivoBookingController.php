@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\EmisivoBooking;
+use App\Models\Agency;
+use App\Models\Country;
+use App\Models\City;
+use App\Models\Airport;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EmisivoBookingController extends Controller
 {
@@ -19,9 +25,14 @@ class EmisivoBookingController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('emisivo-bookings.create');
+        $type = $request->query('type'); // or $request->type
+        $agencies = Agency::all();
+        $countries = Country::all();
+        $cities = City::all();
+        $airports = Airport::all();
+        return view('emisivo-bookings.create', compact('agencies', 'countries', 'cities', 'airports', 'type'));
     }
 
     /**
@@ -42,10 +53,18 @@ class EmisivoBookingController extends Controller
             'total_amount'         => 'nullable|numeric|min:0',
         ]);
 
-        EmisivoBooking::create($validated);
+        Log::info('Validated data:', $validated);
 
-        return redirect()->route('emisivo-bookings.index')
-            ->with('success', 'Emisivo booking created successfully.');
+        $booking = new EmisivoBooking($validated);
+
+        if ($booking->save()) {
+            Log::info('Booking saved with ID: ' . $booking->id);
+            return redirect()->route('emisivo-bookings.index')
+                ->with('success', 'Booking saved!');
+        } else {
+            Log::error('Booking save failed', ['booking' => $booking]);
+            dd('Save failed', $booking);
+        }
     }
 
     /**
