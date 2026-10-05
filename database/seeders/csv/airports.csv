@@ -3,7 +3,6 @@ id,name,code,icao,city,state,county,country,city_code,latitude,longitude,elevati
 2,"Galeao Antonio Carlos Jobim International Airport",GIG,SBGL,"Duque de Caxias","Rio de Janeiro","Duque De Caxias",BR,RIO,-22.81122025,-43.258620204082,32,America/Sao_Paulo,,AP
 3,"El Dorado International Airport",BOG,SKBO,Funza,Cundinamarca,,CO,BOG,4.70289475,-74.148749918004,8382,America/Bogota,,AP
 4,"Brasilia International Airport",BSB,SBBR,Brasilia,"Federal District",Brasilia,BR,BSB,-15.87174755,-47.911721696629,3471,America/Sao_Paulo,http://www.infraero.gov.br/usa/aero_prev_home.php?ai=146,AP
-5,"Arturo Merino Benitez Airport",SCL,SCEL,,,,CL,SCL,-33.397175,-70.79382,1610,America/Santiago,http://www.aeropuertosantiago.cl/ingles/index.php,AP
 6,"Ministro Pistarini Airport",EZE,SAEZ,Ezeiza,"Buenos Aires","Partido de Ezeiza",AR,BUE,-34.81681415,-58.547423350523,65,America/Argentina/Buenos_Aires,http://www.aa2000.com.ar/index.php,AP
 7,"Carrasco International Airport",MVD,SUMU,"Paso de Carrasco",Canelones,,UY,MVD,-34.83043195,-56.022014344719,52,America/Montevideo,,AP
 8,"Tancredo Neves International Airport",CNF,SBCF,"Lagoa Santa","Minas Gerais","Lagoa Santa",BR,BHZ,-19.63339785,-43.968369423939,2713,America/Sao_Paulo,http://www.infraero.gov.br/usa/aero_prev_home.php?ai=207,AP
@@ -24,3 +23,11 @@ id,name,code,icao,city,state,county,country,city_code,latitude,longitude,elevati
 23,"Pinto Martins Airport",FOR,SBFZ,Fortaleza,Ceara,Fortaleza,BR,FOR,-3.779073,-38.540836,141,America/Fortaleza,,AP
 24,"Silvio Pettirossi International Airport",ASU,SGAS,Limpio,Central,,PY,ASU,-25.2355931,-57.515638841897,232,America/Asuncion,,AP
 25,"Alejo Garcia Airport",AGT,SGES,"Colonia Yguazu","Alto Parana",,PY,AGT,-25.5,-54.833332,810,America/Asuncion,,AP
+26,"La Araucanía International Airport",ZCO,SCQP,Temuco,Araucania,"Provincia de Cautin",CL,ZCO,-38.925,-72.651389,333,America/Santiago,,AP
+27,"Arturo Merino Benitez Airport",SCL,SCEL,,,,CL,SCL,-33.397175,-70.79382,1610,America/Santiago,http://www.aeropuertosantiago.cl/ingles/index.php,AP,
+28,"El Loa Airport",CJC,SCCF,Calama,Antofagasta,"Provincia de El Loa",CL,CJC,-22.495085,-68.90843,7493,America/Santiago,,AP,1
+29,"El Tepual Airport",PMC,SCTE,"Puerto Montt","Los Lagos","Provincia de Llanquihue",CL,PMC,-41.4435617,-73.094504676948,305,America/Santiago,,AP,2
+30,"Carriel Sur Airport",CCP,SCIE,Concepcion,Biobio,"Provincia de Concepcion",CL,CCP,-36.77378175,-73.060068638396,22,America/Santiago,,AP,3
+31,"La Florida Airport",LSC,SCSE,"La Serena",Coquimbo,"Provincia de Elqui",CL,LSC,-29.91554595,-71.201944243336,469,America/Santiago,,AP,4
+32,"Diego Aracena International Airport",IQQ,SCDA,Iquique,Tarapaca,"Provincia de Iquique",CL,IQQ,-20.547937,-70.17848,219,America/Santiago,,AP,5
+33,"Pres Ibanez Airport",PUQ,SCCI,,,,CL,PUQ,-53.005356,-70.84307,65,America/Santiago,,AP,

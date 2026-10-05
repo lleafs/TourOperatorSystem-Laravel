@@ -13,10 +13,28 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('bookings.index') }}">
-                            Bookings
+                        <a class="nav-link" href="{{ route('customers.index') }}">
+                            Customers
                         </a>
                     </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="bookingsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Bookings
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="bookingsDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('receptivo-bookings.index') }}">
+                                    Receptivo Bookings
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('emisivo-bookings.index') }}">
+                                    Emisivo Bookings
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('agencies.index') }}">
                             Travel Agencies
@@ -72,7 +90,7 @@
                         <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
                             New Emisivo Booking
                         </a>
-                        <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-info">
+                        <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-primary">
                             New Receptivo Booking
                         </a>
                     </div>

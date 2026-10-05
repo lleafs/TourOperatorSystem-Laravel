@@ -7,17 +7,20 @@ use Illuminate\Support\Facades\Http;
 
 use App\Models\Airport;
 use App\Models\City;
+use App\models\Country;
 
 class FetchAirport extends Command
 {
     // Usage: php artisan airport:fetch LHR
-    protected $signature = 'airport:fetch {iata}';
-    protected $description = 'Fetch airport data from RapidAPI using IATA code and seed into DB with CSV fallback';
+    protected $signature = 'airport:fetch {scope} {iata}';
+    protected $description = 'Fetch airport data from RapidAPI using IATA code and save into nacional or international CSV';
 
     public function handle()
     {
-        $iata = strtoupper($this->argument('iata'));
-        $this->info("Fetching airport data for IATA: {$iata}");
+        $scope = strtolower($this->argument('scope'));
+        $iata  = strtoupper($this->argument('iata'));
+        
+        $this->info("Fetching airport data for IATA: {$iata} ({$scope})");
 
         $curl = curl_init();
         curl_setopt_array($curl, [
@@ -54,17 +57,62 @@ class FetchAirport extends Command
             return;
         }
 
+        // ✅ Resolve country first
+        $countryId = null;
+        if (!empty($meta['country'])) {
+            $country = Country::firstOrCreate(
+                ['name' => $meta['country']],
+                ['iso_code' => $meta['country_code'] ?? null]
+            );
+            $countryId = $country->id;
+        }
+
+        // ✅ Resolve city with country_id
         $cityName = $meta['city'] ?? null;
         $cityId = null;
         if ($cityName) {
             $city = City::firstOrCreate(
                 ['name' => $cityName],
-                ['country' => $meta['country'] ?? null]
+                [
+                    'name_normalized' => strtolower($cityName),
+                    'country_id'      => $countryId,
+                ]
             );
             $cityId = $city->id;
         }
+        // After resolving $cityId
+        $airport = Airport::updateOrCreate(
+            ['icao' => $meta['icao'] ?? $identifier], // unique key for airport
+            [
+                'name'       => $meta['name'] ?? null,
+                'iata'       => $identifier,
+                'icao'       => $meta['icao'] ?? null,
+                'city'       => $meta['city'] ?? null,
+                'state'      => $meta['state'] ?? null,
+                'county'     => $meta['county'] ?? null,
+                'country'    => $meta['country'] ?? null,
+                'city_code'  => $meta['city_code'] ?? null,
+                'latitude'   => $meta['latitude'] ?? null,
+                'longitude'  => $meta['longitude'] ?? null,
+                'elevation'  => $meta['elevation'] ?? null,
+                'time_zone'  => $meta['time_zone'] ?? null,
+                'url'        => $meta['url'] ?? null,
+                'type'       => $meta['type'] ?? null,
+                'city_id'    => $cityId, // foreign key to cities table
+            ]
+        );
 
-        $file = database_path("seeders/csv/airports.csv");
+        $this->info("✅ Airport {$identifier} saved to DB with city_id {$cityId}.");
+
+        // Decide CSV path based on scope
+        if ($scope === 'nacional') {
+            $file = database_path("seeders/csv/nacional/airports.csv");
+        } elseif ($scope === 'international') {
+            $file = database_path("seeders/csv/international/airports.csv");
+        } else {
+            $this->error("Invalid scope: {$scope}. Use 'nacional' or 'international'.");
+            return;
+        }
         // Ensure directory exists
         if (!is_dir(dirname($file))) {
             mkdir(dirname($file), 0755, true);
@@ -76,7 +124,6 @@ class FetchAirport extends Command
             fputcsv($handle, [
                 'id',
                 'name',
-                'code',
                 'icao',
                 'city',
                 'state',
@@ -88,7 +135,8 @@ class FetchAirport extends Command
                 'elevation',
                 'time_zone',
                 'url',
-                'type'
+                'type',
+                'cityId'
             ]);
             fclose($handle);
         }
@@ -99,16 +147,15 @@ class FetchAirport extends Command
             while (($row = fgetcsv($handle)) !== false) {
                 // Skip header row
                 if ($row[0] === 'id') continue;
-                if (!isset($row[1])) continue;
-
+                if (!isset($row[3])) continue;
                 $lastId = max($lastId, (int)$row[0]);
-                $existingCodes[] = $row[1]; // column 1 = IATA code
+                $existingCodes[] = $row[3]; // column 1 = IATA code
             }
             fclose($handle);
         }
 
         // ✅ Skip duplicates
-        if (in_array($identifier, $existingCodes)) {
+        if (in_array($meta['icao'] ?? $identifier, $existingCodes)) {
             $this->warn("⚠️ Airport {$identifier} already exists in airports.csv. Skipping append.");
             return;
         }
@@ -132,6 +179,7 @@ class FetchAirport extends Command
             $meta['time_zone'] ?? null,
             $meta['url'] ?? null,
             $meta['type'] ?? null,
+            $cityId ?? null,
         ]);
         fclose($handle);
 

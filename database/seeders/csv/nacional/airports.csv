@@ -1,0 +1,33 @@
+id,name,icao,city,state,county,country,city_code,latitude,longitude,elevation,time_zone,url,type,cityId
+1,"Arturo Merino Benitez Airport",SCL,SCEL,,,,CL,SCL,-33.397175,-70.79382,1610,America/Santiago,http://www.aeropuertosantiago.cl/ingles/index.php,AP,
+2,"El Loa Airport",CJC,SCCF,Calama,Antofagasta,"Provincia de El Loa",CL,CJC,-22.495085,-68.90843,7493,America/Santiago,,AP,1
+3,"Cerro Moreno International Airport",ANF,SCFA,Antofagasta,Antofagasta,"Provincia de Antofagasta",CL,ANF,-23.4523757,-70.439734343528,347,America/Santiago,,AP,6
+4,"El Tepual Airport",PMC,SCTE,"Puerto Montt","Los Lagos","Provincia de Llanquihue",CL,PMC,-41.4435617,-73.094504676948,305,America/Santiago,,AP,2
+5,"Carriel Sur Airport",CCP,SCIE,Concepcion,Biobio,"Provincia de Concepcion",CL,CCP,-36.77378175,-73.060068638396,22,America/Santiago,,AP,3
+6,"La Florida Airport",LSC,SCSE,"La Serena",Coquimbo,"Provincia de Elqui",CL,LSC,-29.91554595,-71.201944243336,469,America/Santiago,,AP,4
+7,"Diego Aracena International Airport",IQQ,SCDA,Iquique,Tarapaca,"Provincia de Iquique",CL,IQQ,-20.547937,-70.17848,219,America/Santiago,,AP,5
+8,"Pres Ibanez Airport",PUQ,SCCI,,,,CL,PUQ,-53.005356,-70.84307,65,America/Santiago,,AP,
+9,"La Araucanía International Airport",ZCO,SCQP,Temuco,Araucania,"Provincia de Cautin",CL,ZCO,-38.925,-72.651389,333,America/Santiago,,AP,7
+10,"Chamonate Airport",CPO,SCAT,Copiapo,Atacama,"Provincia de Copiapo",CL,CPO,-27.29892,-70.414406,994,America/Santiago,,AP,8
+11,"Chacalluta Airport",ARI,SCAR,Arica,"Arica y Parinacota","Provincia de Arica",CL,ARI,-18.3527842,-70.341218442633,127,America/Santiago,,AP,9
+12,"Teniente Vidal Airport",BBA,SCBA,,,,CL,BBA,-45.916668,-71.695,1696,America/Santiago,,AP,
+13,"Canal Bajo Airport",ZOS,SCJO,Osorno,"Los Lagos","Provincia de Osorno",CL,ZOS,-40.6045516,-73.061039148857,187,America/Santiago,,AP,10
+14,"Teniente J. Gallardo",PNT,SCNT,"Puerto Natales",Magallanes,,CL,PNT,-51.683334,-72.51667,209,America/Santiago,,AP,11
+15,"Mataveri International Airport",IPC,SCIP,"Ostrov Paskhi",,,CL,IPC,-27.116667,-109.36667,757,Pacific/Easter,,AP,12
+16,"Pichoy Airport",ZAL,SCVD,Valdivia,"Los Rios","Provincia de Valdivia",CL,ZAL,-39.791668,-73.23944,59,America/Santiago,,AP,13
+17,Porvenir,WPR,SCFM,"Punta Arenas",Magallanes,"Provincia de Magallanes",CL,WPR,-53.25,-70.333336,39,America/Santiago,,AP,14
+18,"Mocopulli Airport",MHC,SCPQ,,,,CL,WCA,-42.341692,-73.715853441245,544,America/Santiago,,AP,
+19,"Vina del Mar",KNA,SCVM,"Vina del Mar",Valparaiso,"Provincia de Valparaiso",CL,KNA,-33.033333,-71.566666,461,America/Santiago,,AP,15
+20,"Puerto Williams",WPU,SCGZ,Ushuaia,"Tierra del Fuego",,CL,WPU,-54.95,-68.25,1381,America/Santiago,,AP,16
+21,Talca,TLX,SCTL,Talca,Maule,"Provincia de Talca",CL,TLX,-35.466667,-71.666664,371,America/Santiago,,AP,17
+22,Valparaiso,VAP,SCRD,Valparaiso,Valparaiso,"Provincia de Valparaiso",CL,VAP,-33.033333,-71.666664,0,America/Santiago,,AP,18
+23,"Puerto Varas",PUX,SCPV,"Rio Bueno","Los Rios","Provincia del Ranco",CL,PUX,-40.34028,-72.94444,187,America/Santiago,,AP,19
+24,Chaiten,WCH,SCTN,Chaiten,"Los Lagos","Provincia de Palena",CL,WCH,-42.916668,-72.71667,0,America/Santiago,,AP,20
+25,Chillan,YAI,SCCH,Chillan,Biobio,"Provincia de Nuble",CL,YAI,-36.6,-72.11667,367,America/Santiago,,AP,21
+26,"Temuco Maquehue Airport",PZS,SCTC,,,,CL,PZS,-38.7670058,-72.628412430185,278,America/Santiago,,AP,
+27,"Los Andes",LOB,SCAN,Coquimbo,Coquimbo,"Provincia de Elqui",CL,LOB,-29.966667,-71.53333,0,America/Santiago,,AP,22
+28,"Los Angeles",LSQ,SCGE,"Los Angeles",Biobio,"Provincia de Biobio",CL,LSQ,-37.3975,-72.422775,416,America/Santiago,,AP,23
+29,"Ten. Vidal",GXQ,SCCY,Coihaique,Aisen,"Provincia de Coyhaique",CL,GXQ,-45.58889,-72.09861,984,America/Santiago,,AP,24
+30,Ovalle,OVL,SCOV,"Monte Patria",Coquimbo,"Provincia de Limari",CL,OVL,-30.566668,-71,2532,America/Santiago,,AP,25
+31,"Pampa Guanaco Airport",DPB,SCBI,,,,CL,DPB,-54.05,-68.808333,505,America/Santiago,,AP,
+32,Chanaral,CNR,SCRA,,,,CL,CNR,-26.33254,-70.607339975118,104,America/Santiago,,AP,

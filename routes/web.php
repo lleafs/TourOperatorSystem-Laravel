@@ -13,6 +13,7 @@ use App\Http\Controllers\AirportController;
 use App\Http\Controllers\AirlineController;
 use App\Http\Controllers\EmisivoBookingController;
 use App\Http\Controllers\ReceptivoBookingController;
+use App\Http\Controllers\CustomerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,10 +56,18 @@ Route::get('/airports/by-city/{cityId}', [AirportController::class, 'getAirports
 //Resourceful CRUD for airlines
 Route::resource('airlines', AirlineController::class);
 
+//Resourceful CRUD for customers
+Route::resource('customers', CustomerController::class);
 
 
+Route::post('/bookings/{booking}/assign-customer', [ReceptivoBookingController::class, 'assignCustomer'])
+    ->name('bookings.assign-customer');
+
+Route::delete('/bookings/{booking}/remove-customer/{customer}', [ReceptivoBookingController::class, 'removeCustomer'])
+    ->name('bookings.remove-customer');
 
 
+    
 //Resourceful CRUD for Emisivo Booking
 Route::resource('emisivo-bookings', EmisivoBookingController::class);
 //Resourceful CRUD for Receptivo Booking

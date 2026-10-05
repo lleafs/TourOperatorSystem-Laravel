@@ -13,14 +13,26 @@ class ReceptivoBooking extends Model
         'agency_id',
         'booking_date',
         'status',
-        'customer_name',
-        'customer_email',
         'hotel_name',
-        'hotel_city',
-        'hotel_timing',
         'check_in',
         'check_out',
-        'notes',
         'total_amount',
     ];
+
+
+    // Relaciones básicas
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
+    public function customers()
+    {
+        return $this->belongsToMany(Customer::class, 'booking_customer');
+    }
 }
