@@ -121,14 +121,22 @@ class ReceptivoBookingController extends Controller
             'customer_id' => 'required|exists:customers,id',
         ]);
 
-        // Agregar cliente al booking sin borrar los anteriores
         $booking->customers()->attach($validated['customer_id']);
 
-        return response()->json([
-            'success' => true,
-            'customer' => $booking->customers()->find($validated['customer_id'])
-        ]);
+        $customer = $booking->customers()->find($validated['customer_id']);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'customer' => $customer,
+            ]);
+        }
+
+        return redirect()
+            ->route('receptivo-bookings.show', $booking->id)
+            ->with('success', 'Customer assigned successfully.');
     }
+
 
     public function removeCustomer(ReceptivoBooking $booking, Customer $customer)
     {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Flight;
+use App\Models\Airline;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class FlightController extends Controller
@@ -21,7 +23,9 @@ class FlightController extends Controller
      */
     public function create()
     {
-        return view('flights.create');
+        $airlines = Airline::all();
+        $countries = Country::all();
+        return view('flights.create', compact('airlines', 'countries'));
     }
 
     /**

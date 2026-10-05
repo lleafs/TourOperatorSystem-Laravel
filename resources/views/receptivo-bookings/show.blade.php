@@ -20,10 +20,19 @@
     <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">
             <span>Customers</span>
-            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#assignCustomerModal">
-                Assign Customer
-            </button>
+            <div class="ms-auto">
+                <!-- Existing Assign Customer button -->
+                <button type="button" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#assignCustomerModal">
+                    Assign Customer
+                </button>
+
+                <!-- New Customer button -->
+                <button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#newCustomerModal">
+                    New Customer
+                </button>
+            </div>
         </div>
+
         <div class="card-body">
             @if($receptivoBooking->customers->isNotEmpty())
             <ul class="list-group" id="customerList">
@@ -33,8 +42,6 @@
                 </li>
                 @endforeach
             </ul>
-
-
             @else
             <ul class="list-group" id="customerList"></ul>
             <p>No customers assigned.</p>
@@ -49,6 +56,22 @@
     </div>
 </div>
 
+<!-- Modal for New Customer -->
+<div class="modal fade" id="newCustomerModal" tabindex="-1" aria-labelledby="newCustomerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="newCustomerModalLabel">Create New Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body p-0">
+                <iframe src="http://touroperatorsystem-macmini.test/customers/create"
+                    style="width:100%; height:500px; border:none;"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Modal para asignar cliente -->
 <div class="modal fade" id="assignCustomerModal" tabindex="-1" aria-labelledby="assignCustomerModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -60,8 +83,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <label>Select Customer</label>
-                    <select name="customer_id" class="form-control" required>
+                    <label for="customer_id">Select Customer</label>
+                    <select name="customer_id" id="customer_id" class="form-control" required>
                         @foreach($customers as $customer)
                         <option value="{{ $customer->id }}">{{ $customer->full_name }}</option>
                         @endforeach

@@ -24,9 +24,8 @@ return new class extends Migration {
             $table->string('time_zone')->nullable();
             $table->string('url')->nullable();
             $table->string('type')->nullable();    // e.g. AP
+            $table->unsignedBigInteger('city_id')->nullable();
             $table->timestamps();
-
-            $table->foreignId('city_id')->nullable()->constrained('cities')->onDelete('set null');
         });
     }
 

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1>Customers</h1>
-    <a href="{{ route('customers.create') }}" class="btn btn-primary mb-3">Add Customer</a>
+    <a href="{{ route('customers.create') }}" class="btn btn-primary mb-3">New Customer</a>
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>

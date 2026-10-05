@@ -55,6 +55,7 @@ Route::get('/airports/by-city/{cityId}', [AirportController::class, 'getAirports
 
 //Resourceful CRUD for airlines
 Route::resource('airlines', AirlineController::class);
+Route::get('/airlines/by-country/{country}', [AirlineController::class, 'getByCountry']);
 
 //Resourceful CRUD for customers
 Route::resource('customers', CustomerController::class);

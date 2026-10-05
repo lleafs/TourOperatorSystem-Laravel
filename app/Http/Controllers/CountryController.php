@@ -35,11 +35,16 @@ class CountryController extends Controller
         ]);
 
         try {
-            $country = Country::create($validated);
-            return response()->json($country);
+            Country::create($validated);
+
+            return redirect()
+                ->route('countries.index')
+                ->with('success', 'Country created successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->getCode() == 23000) { // duplicate key
-                return response()->json(['error' => 'Country already exists'], 422);
+                return redirect()
+                    ->route('countries.index')
+                    ->with('error', 'Country already exists.');
             }
             throw $e;
         }

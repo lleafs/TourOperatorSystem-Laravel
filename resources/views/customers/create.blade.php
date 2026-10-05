@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h1>Add Customer</h1>
+    <h1>New Customer</h1>
     <form action="{{ route('customers.store') }}" method="POST">
         @csrf
         @include('customers.partials.form')

@@ -88,4 +88,13 @@ class AirlineController extends Controller
         return redirect()->route('airlines.index')
             ->with('success', 'Airline deleted successfully.');
     }
+    // AirlineController.php
+    public function getByCountry($countryId)
+    {
+        return response()->json(
+            Airline::where('country', $countryId)
+                ->orderBy('name')
+                ->get(['id', 'name', 'iata'])
+        );
+    }
 }

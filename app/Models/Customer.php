@@ -9,6 +9,8 @@ class Customer extends Model
 {
     use HasFactory;
 
+    protected $appends = ['full_name'];
+
     // Table name is inferred as "customers"
     protected $table = 'customers';
 

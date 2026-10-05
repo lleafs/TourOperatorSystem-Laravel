@@ -13,6 +13,11 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('agencies.index') }}">
+                            Travel Agencies
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('customers.index') }}">
                             Customers
                         </a>
@@ -36,38 +41,57 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('agencies.index') }}">
-                            Travel Agencies
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('vouchers.index') }}">
-                            Vouchers
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('hotels.index') }}">
                             Hotels
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('airports.index') }}">
-                            Airports
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="aviationDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Aviation
                         </a>
+                        <ul class="dropdown-menu" aria-labelledby="aviationDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('airports.index') }}">
+                                    Airports
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('airlines.index') }}">
+                                    Airlines
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('flights.index') }}">
+                                    Flights
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="geographyDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Geography
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="geographyDropdown">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('continents.index') }}">
+                                    Continents
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('countries.index') }}">
+                                    Countries
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('cities.index') }}">
+                                    Cities
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('airlines.index') }}">
-                            Airlines
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('flights.index') }}">
-                            Flights
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('continents.index') }}">
-                            Continents
+                        <a class="nav-link" href="{{ route('vouchers.index') }}">
+                            Vouchers
                         </a>
                     </li>
                 </ul>
@@ -82,12 +106,14 @@
             {{-- Example panel linking to Bookings --}}
             <div class="card mt-4">
                 <div class="card-header">Quick Access</div>
-                <div class="card-body">
-                    <a href="{{ route('bookings.index') }}" class="btn btn-success">View Bookings</a>
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <a href="{{ route('bookings.index') }}" class="btn btn-success">
+                        View Bookings
+                    </a>
 
-                    {{-- New Booking Options --}}
-                    <div class="btn-group" role="group">
-                        <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
+                    {{-- New Booking Options aligned right --}}
+                    <div class="btn-group ms-auto" role="group">
+                        <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary me-2">
                             New Emisivo Booking
                         </a>
                         <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-primary">
@@ -96,6 +122,7 @@
                     </div>
                 </div>
             </div>
+
 
         </main>
     </div>

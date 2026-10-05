@@ -136,7 +136,7 @@ class FetchAirport extends Command
                 'time_zone',
                 'url',
                 'type',
-                'cityId'
+                'city_id'
             ]);
             fclose($handle);
         }

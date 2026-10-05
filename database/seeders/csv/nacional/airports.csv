@@ -1,4 +1,4 @@
-id,name,icao,city,state,county,country,city_code,latitude,longitude,elevation,time_zone,url,type,cityId
+id,name,iata,icao,city,state,county,country,city_code,latitude,longitude,elevation,time_zone,url,type,city_id
 1,"Arturo Merino Benitez Airport",SCL,SCEL,,,,CL,SCL,-33.397175,-70.79382,1610,America/Santiago,http://www.aeropuertosantiago.cl/ingles/index.php,AP,
 2,"El Loa Airport",CJC,SCCF,Calama,Antofagasta,"Provincia de El Loa",CL,CJC,-22.495085,-68.90843,7493,America/Santiago,,AP,1
 3,"Cerro Moreno International Airport",ANF,SCFA,Antofagasta,Antofagasta,"Provincia de Antofagasta",CL,ANF,-23.4523757,-70.439734343528,347,America/Santiago,,AP,6

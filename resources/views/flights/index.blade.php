@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <h1 class="mb-4">Flights</h1>
-    <a href="{{ route('flights.create') }}" class="btn btn-primary mb-3">New Flight</a>
+    <a href="{{ route('flights.create') }}" class="btn btn-primary mb-3">Add Route</a>
 
     <table class="table table-striped">
         <thead>

@@ -25,6 +25,7 @@ class Airport extends Model
         'time_zone',
         'url',
         'type',
+        'CityId',
     ];
 
         // Define pivot relationship
