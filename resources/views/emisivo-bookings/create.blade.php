@@ -92,6 +92,19 @@
             <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
+<div class="form-group">
+    <label for="departure_flight_id">Departure Flight</label>
+    <select name="departure_flight_id" id="departure_flight_id" class="form-control">
+        <option value="">-- Select Flight --</option>
+        @foreach($flights as $flight)
+            <option value="{{ $flight->id }}">
+                {{ $flight->flight_number }} ({{ $flight->origin }} → {{ $flight->destination }}) 
+                - {{ $flight->scheduled_time->format('d M Y, H:i') }}
+            </option>
+        @endforeach
+    </select>
+</div>
+
 
         {{-- Notes --}}
         <div class="mb-3">

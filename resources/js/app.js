@@ -5,3 +5,6 @@ import './customer-create.js';
 import './customer-dropdown.js';
 import './receptivo_booking';
 import './flights.js';
+import './datatables-flights.js';
+import './datatables-emisivo-booking.js';
+import './emisivo-booking.js';

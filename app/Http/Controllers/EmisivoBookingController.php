@@ -7,6 +7,7 @@ use App\Models\Agency;
 use App\Models\Country;
 use App\Models\City;
 use App\Models\Airport;
+use App\Models\Flight;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -18,11 +19,18 @@ class EmisivoBookingController extends Controller
      */
     public function index()
     {
-        $bookings = EmisivoBooking::with(['departureCountry', 'departureCity', 'airport'])
-        ->latest()
-        ->paginate(10);
+        $bookings = EmisivoBooking::with([
+            'departureCountry',
+            'departureCity',
+            'airport',
+            'departureFlight'
+        ])
+            ->latest()
+            ->paginate(10);
+
         return view('emisivo-bookings.index', compact('bookings'));
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -34,7 +42,8 @@ class EmisivoBookingController extends Controller
         $countries = Country::all();
         $cities = City::all();
         $airports = Airport::all();
-        return view('emisivo-bookings.create', compact('agencies', 'countries', 'cities', 'airports', 'type'));
+        $flights = Flight::all();
+        return view('emisivo-bookings.create', compact('agencies', 'countries', 'cities', 'airports', 'flights','type'));
     }
 
     /**
@@ -51,6 +60,7 @@ class EmisivoBookingController extends Controller
             'departure_country_id' => 'nullable|exists:countries,id',
             'departure_city_id'    => 'nullable|exists:cities,id',
             'airport_id'           => 'nullable|exists:airports,id',
+            'departure_flight_id'  => 'nullable|exists:flights,id',
             'notes'                => 'nullable|string',
             'total_amount'         => 'nullable|numeric|min:0',
         ]);
@@ -74,6 +84,13 @@ class EmisivoBookingController extends Controller
      */
     public function show(EmisivoBooking $emisivoBooking)
     {
+        $emisivoBooking->load([
+            'departureFlight',
+            'departureCountry',
+            'departureCity',
+            'airport',
+            'agency'
+        ]);
         return view('emisivo-bookings.show', compact('emisivoBooking'));
     }
 
@@ -104,6 +121,7 @@ class EmisivoBookingController extends Controller
             'departure_country_id' => 'nullable|exists:countries,id',
             'departure_city_id'    => 'nullable|exists:cities,id',
             'airport_id'           => 'nullable|exists:airports,id',
+            'departure_flight_id'  => 'nullable|exists:flights,id',
             'notes'                => 'nullable|string',
             'total_amount'         => 'nullable|numeric|min:0',
         ]);

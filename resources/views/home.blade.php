@@ -107,13 +107,20 @@
             <div class="card mt-4">
                 <div class="card-header">Quick Access</div>
                 <div class="card-body d-flex justify-content-between align-items-center">
-                    <a href="{{ route('bookings.index') }}" class="btn btn-success">
-                        View Bookings
-                    </a>
 
-                    {{-- New Booking Options aligned right --}}
+                    {{-- View Bookings --}}
+                    <div class="btn-group" role="group">
+                        <a href="{{ route('receptivo-bookings.index') }}" class="btn btn-success">
+                            View Receptivo Bookings
+                        </a>
+                        <a href="{{ route('emisivo-bookings.index') }}" class="btn btn-success">
+                            View Emisivo Bookings
+                        </a>
+                    </div>
+
+                    {{-- New Booking Options --}}
                     <div class="btn-group ms-auto" role="group">
-                        <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary me-2">
+                        <a href="{{ route('emisivo-bookings.create', ['type' => 'emisivo']) }}" class="btn btn-primary">
                             New Emisivo Booking
                         </a>
                         <a href="{{ route('receptivo-bookings.create', ['type' => 'receptivo']) }}" class="btn btn-primary">
@@ -122,7 +129,6 @@
                     </div>
                 </div>
             </div>
-
 
         </main>
     </div>

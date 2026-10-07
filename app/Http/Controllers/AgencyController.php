@@ -37,7 +37,7 @@ class AgencyController extends Controller
             'commission'   => 'required|numeric|min:0',
         ]);
 
-        $agency = \App\Models\Agency::create($validated);
+        $agency = Agency::create($validated);
 
         if ($request->ajax()) {
             return response()->json(['success' => true, 'agency' => $agency]);

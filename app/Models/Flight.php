@@ -9,7 +9,11 @@ class Flight extends Model
 {
     /** @use HasFactory<\Database\Factories\FlightFactory> */
     use HasFactory;
-        protected $fillable = [
+    protected $casts = [
+        'scheduled_time' => 'datetime',
+    ];
+
+    protected $fillable = [
         'flight_number',
         'origin',
         'destination',
@@ -18,3 +22,4 @@ class Flight extends Model
         'aircraft',
     ];
 }
+

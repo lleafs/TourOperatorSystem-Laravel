@@ -11,7 +11,7 @@ class AirlineSeeder extends Seeder
     public function run()
     {
 
-        DB::table('airlines')->truncate();
+        //DB::table('airlines')->truncate();
 
         $path = database_path('seeders/csv/airlines.csv');
         $file = fopen($path, 'r');

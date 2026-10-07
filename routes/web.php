@@ -37,6 +37,7 @@ Route::resource('hotels', HotelController::class);
 
 // Resourceful CRUD for flights
 Route::resource('flights', FlightController::class);
+Route::get('/flights/by-airport/{airport}', [FlightController::class, 'byAirport']);
 
 // Resourceful CRUD for continents
 Route::resource('continents', ContinentController::class);

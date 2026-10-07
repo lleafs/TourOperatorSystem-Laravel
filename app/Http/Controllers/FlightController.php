@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use App\Models\Airport;
 use App\Models\Flight;
 use App\Models\Airline;
 use App\Models\Country;
@@ -38,7 +40,7 @@ class FlightController extends Controller
             'origin'         => 'required|string|max:255',
             'destination'    => 'required|string|max:255',
             'scheduled_time' => 'required|date',
-            'status'         => 'required|string|in:Scheduled,Delayed,Cancelled',
+            'status'         => 'required|string|in:Estimated,Scheduled,Delayed,Cancelled',
             'aircraft'       => 'nullable|string|max:255',
         ]);
 
@@ -74,7 +76,7 @@ class FlightController extends Controller
             'origin'         => 'required|string|max:255',
             'destination'    => 'required|string|max:255',
             'scheduled_time' => 'required|date',
-            'status'         => 'required|string|in:Scheduled,Delayed,Cancelled',
+            'status'         => 'required|string|in:Estimated,Scheduled,Delayed,Cancelled',
             'aircraft'       => 'nullable|string|max:255',
         ]);
 
@@ -93,5 +95,18 @@ class FlightController extends Controller
 
         return redirect()->route('flights.index')
             ->with('success', 'Flight deleted successfully.');
+    }
+
+    public function byAirport($airportId)
+    {
+        $airport = Airport::findOrFail($airportId);
+
+        $flights = Flight::where('origin', $airport->iata)
+            ->where('scheduled_time', '>=', Carbon::today()) // only today and future
+            ->select('id', 'flight_number', 'origin', 'destination', 'scheduled_time', 'aircraft')
+            ->orderBy('scheduled_time', 'asc')
+            ->get();
+
+        return response()->json($flights);
     }
 }

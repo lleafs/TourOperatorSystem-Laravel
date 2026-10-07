@@ -20,9 +20,20 @@ class EmisivoBooking extends Model
         'departure_country_id',
         'departure_city_id',
         'airport_id',
+        'departure_flight_id',
         'notes',
         'total_amount',
     ];
+
+    public function agency()
+    {
+        return $this->belongsTo(Agency::class);
+    }
+    
+    public function departureFlight()
+    {
+        return $this->belongsTo(Flight::class, 'departure_flight_id');
+    }
 
     public function departureCountry()
     {

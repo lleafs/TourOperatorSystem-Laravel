@@ -50,6 +50,7 @@
 
         <div class="mb-3">
             <select name="status" class="form-control" required>
+                <option value="Cancelled">Estimated</option>
                 <option value="Scheduled">Scheduled</option>
                 <option value="Delayed">Delayed</option>
                 <option value="Cancelled">Cancelled</option>

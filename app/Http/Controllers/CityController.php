@@ -32,16 +32,23 @@ class CityController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name'       => 'required|string|max:255',
             'country_id' => 'required|exists:countries,id',
         ]);
 
         try {
-            $city = City::create($validated);
-            return response()->json($city);
+            City::create($validated);
+
+            // Redirect to cities.index with success message
+            return redirect()
+                ->route('cities.index')
+                ->with('success', 'City created successfully.');
         } catch (\Illuminate\Database\QueryException $e) {
             if ($e->getCode() == 23000) { // duplicate key
-                return response()->json(['error' => 'City already exists in this country'], 422);
+                // Redirect back with error message
+                return redirect()
+                    ->route('cities.index')
+                    ->with('error', 'City already exists in this country.');
             }
             throw $e;
         }

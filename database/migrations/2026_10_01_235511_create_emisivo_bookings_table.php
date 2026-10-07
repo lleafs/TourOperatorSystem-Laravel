@@ -18,10 +18,18 @@ return new class extends Migration
             $table->string('status')->default('pending');
             $table->string('customer_name');
             $table->string('customer_email');
+
             // Flight‑centric fields
             $table->foreignId('departure_country_id')->nullable()->constrained('countries');
             $table->foreignId('departure_city_id')->nullable()->constrained('cities');
             $table->foreignId('airport_id')->nullable()->constrained('airports');
+
+            // New: departure flight reference
+            $table->foreignId('departure_flight_id')
+                ->nullable()
+                ->constrained('flights')
+                ->onDelete('set null');
+
             $table->text('notes')->nullable();
             $table->decimal('total_amount', 10, 2)->nullable();
             $table->timestamps();

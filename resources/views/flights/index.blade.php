@@ -5,7 +5,7 @@
     <h1 class="mb-4">Flights</h1>
     <a href="{{ route('flights.create') }}" class="btn btn-primary mb-3">Add Route</a>
 
-    <table class="table table-striped">
+    <table id="flightsTable" class="table table-striped">
         <thead>
             <tr>
                 <th>Flight Number</th>
